@@ -1,8 +1,8 @@
 # 💻 Nexus Pro 16 — 3D Interactive Laptop Shop & Customizer
 
-An ultra-modern, interactive 3D Laptop Customizer and E-Commerce store built with **Three.js**, **WebGL**, and **Vanilla JavaScript**. 
+An ultra-modern, interactive 3D Laptop Customizer and E-Commerce store built with **Three.js**, **WebGL**, and **Vanilla JavaScript**.
 
-Visitors can rotate the laptop **360°**, zoom in/out, animate the display lid **open and close**, switch body colors in real time, change screen wallpapers, and experience an interactive **Buy Now** checkout flow.
+🚀 **Live Site URL:** [https://atiqur-rahman-pro.github.io/laptop-3d-shop/](https://atiqur-rahman-pro.github.io/laptop-3d-shop/)
 
 ---
 
@@ -61,8 +61,8 @@ To host this project for free on GitHub Pages:
 2. Go to **Settings** → **Pages**.
 3. Under **Build and deployment** → **Source**, select **Deploy from a branch**.
 4. Choose Branch: `main` / Folder: `/ (root)` and click **Save**.
-5. Your live link will be:  
-   `https://atiqur-rahman-pro.github.io/laptop-3d-shop/`
+5. Your live link:  
+   👉 [https://atiqur-rahman-pro.github.io/laptop-3d-shop/](https://atiqur-rahman-pro.github.io/laptop-3d-shop/)
 
 ---
 

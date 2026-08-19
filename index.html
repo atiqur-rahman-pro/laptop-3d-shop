@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Pro 16 - 3D Laptop Interactive Customizer</title>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Importmap for Three.js -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- WebGL Canvas Container -->
+  <div id="canvas-container">
+    <canvas id="webgl-canvas"></canvas>
+  </div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="spinner"></div>
+    <p>3D Studio লোড হচ্ছে...</p>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-laptop-code"></i>
+      <span>NEXUS <small>3D</small></span>
+    </div>
+    <nav class="nav-links">
+      <a href="#" class="active"><i class="fa-solid fa-cube"></i> 3D Customizer</a>
+      <a href="#specs"><i class="fa-solid fa-microchip"></i> Specs</a>
+      <a href="#studio"><i class="fa-solid fa-images"></i> Studio</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cart-toggle">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Drag / Zoom Hint Overlay -->
+  <div class="interaction-hint">
+    <div class="hint-item"><i class="fa-solid fa-hand-pointer"></i> মাউস ড্রাগ করে ৩৬০° ঘোরান</div>
+    <div class="hint-divider">|</div>
+    <div class="hint-item"><i class="fa-solid fa-magnifying-glass-plus"></i> স্ক্রোল করে জুম করুন</div>
+  </div>
+
+  <!-- Floating Customizer Panel -->
+  <aside class="customizer-panel">
+    <div class="panel-header">
+      <div class="badge"><i class="fa-solid fa-bolt"></i> Flagship 2026</div>
+      <h1 class="product-title">Nexus Pro 16 Ultra</h1>
+      <p class="product-subtitle">Next-Gen M3 Studio Processor • 3D Customization</p>
+      <div class="price-rating">
+        <span class="price" id="display-price">$2,499</span>
+        <div class="rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-stroke"></i>
+          <span>4.9 (128 reviews)</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Color Selection -->
+    <div class="section">
+      <h3 class="section-title">
+        <i class="fa-solid fa-palette"></i> বডি কালার সিলেক্ট করুন: 
+        <span id="selected-color-name" class="color-name-highlight">Space Black</span>
+      </h3>
+      <div class="color-options" id="color-options">
+        <button class="color-btn active" data-color="#1b1c20" data-name="Space Black" style="background-color: #1b1c20;" title="Space Black"></button>
+        <button class="color-btn" data-color="#d6d8df" data-name="Starlight Silver" style="background-color: #d6d8df;" title="Starlight Silver"></button>
+        <button class="color-btn" data-color="#0f172a" data-name="Midnight Blue" style="background-color: #0f172a;" title="Midnight Blue"></button>
+        <button class="color-btn" data-color="#c58b88" data-name="Rose Metallic" style="background-color: #c58b88;" title="Rose Metallic"></button>
+        <button class="color-btn" data-color="#043832" data-name="Cyber Emerald" style="background-color: #043832;" title="Cyber Emerald"></button>
+      </div>
+    </div>
+
+    <!-- Lid Control Slider -->
+    <div class="section">
+      <div class="slider-header">
+        <h3 class="section-title"><i class="fa-solid fa-laptop"></i> ডিসপ্লে লিড (Lid) নিয়ন্ত্রণ</h3>
+        <span id="lid-angle-text" class="slider-value">110° Open</span>
+      </div>
+      <input type="range" id="lid-slider" min="0" max="120" value="110" step="1" class="custom-range">
+      <div class="preset-buttons">
+        <button class="preset-btn" id="btn-close-lid"><i class="fa-solid fa-folder-closed"></i> বন্ধ করুন</button>
+        <button class="preset-btn" id="btn-half-lid"><i class="fa-solid fa-folder"></i> হাফ ওপেন</button>
+        <button class="preset-btn active" id="btn-open-lid"><i class="fa-solid fa-folder-open"></i> ফুল ওপেন</button>
+      </div>
+    </div>
+
+    <!-- Camera Angles -->
+    <div class="section">
+      <h3 class="section-title"><i class="fa-solid fa-camera-rotate"></i> ক্যামেরা ভিউ</h3>
+      <div class="camera-grid">
+        <button class="cam-btn" data-cam="front"><i class="fa-solid fa-laptop"></i> Front</button>
+        <button class="cam-btn" data-cam="keyboard"><i class="fa-solid fa-keyboard"></i> Keyboard</button>
+        <button class="cam-btn" data-cam="side"><i class="fa-solid fa-arrows-left-right"></i> Side</button>
+        <button class="cam-btn" data-cam="top"><i class="fa-solid fa-vector-square"></i> Top</button>
+      </div>
+      <div class="toggle-row">
+        <label class="switch-label">
+          <input type="checkbox" id="auto-spin-toggle">
+          <span class="slider round"></span>
+          <span><i class="fa-solid fa-rotate"></i> অটো ৩৬০° স্পিন (Auto Rotate)</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Screen Wallpaper -->
+    <div class="section">
+      <h3 class="section-title"><i class="fa-solid fa-desktop"></i> স্ক্রিন ওয়ালপেপার পরিবর্তন</h3>
+      <div class="wallpaper-options">
+        <button class="wp-btn active" data-wp="matrix"><i class="fa-solid fa-code"></i> Cyber Code</button>
+        <button class="wp-btn" data-wp="nebula"><i class="fa-solid fa-meteor"></i> Cosmic</button>
+        <button class="wp-btn" data-wp="minimal"><i class="fa-solid fa-sun"></i> Minimal OS</button>
+      </div>
+    </div>
+
+    <!-- Purchase Action -->
+    <div class="action-footer">
+      <button class="buy-now-btn" id="buy-now-btn">
+        <i class="fa-solid fa-bag-shopping"></i> Buy Now
+      </button>
+      <button class="add-cart-btn" id="add-cart-btn">
+        <i class="fa-solid fa-cart-plus"></i> কার্টে যোগ করুন
+      </button>
+    </div>
+  </aside>
+
+  <!-- Buy Now Modal -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-card">
+      <button class="close-modal-btn" id="close-modal">&times;</button>
+      <div class="modal-header">
+        <i class="fa-solid fa-circle-check success-icon"></i>
+        <h2>অর্ডার নিশ্চিতকরণ (Checkout)</h2>
+        <p>আপনার কাস্টমাইজড 3D ল্যাপটপের বিবরণ সম্বলিত সামারি</p>
+      </div>
+
+      <div class="order-summary">
+        <div class="summary-item">
+          <span>প্রোডাক্ট মডেল:</span>
+          <strong>Nexus Pro 16 Ultra</strong>
+        </div>
+        <div class="summary-item">
+          <span>নির্বাচিত কালার:</span>
+          <strong id="modal-color-name">Space Black</strong>
+        </div>
+        <div class="summary-item">
+          <span>ডিসপ্লে লিড স্টেট:</span>
+          <strong id="modal-lid-state">110° Open</strong>
+        </div>
+        <div class="summary-item">
+          <span>প্রসেসর ও র‍্যাম:</span>
+          <strong>Nexus M3 Max • 36GB RAM • 1TB SSD</strong>
+        </div>
+        <div class="summary-item total-row">
+          <span>মোট মূল্য:</span>
+          <strong class="total-price">$2,499 USD</strong>
+        </div>
+      </div>
+
+      <form id="checkout-form" class="checkout-form">
+        <div class="form-group">
+          <label for="user-name">আপনার নাম</label>
+          <input type="text" id="user-name" required placeholder="মোঃ আব্দুর রহমান">
+        </div>
+        <div class="form-group">
+          <label for="user-phone">ফোন নম্বর</label>
+          <input type="tel" id="user-phone" required placeholder="01700000000">
+        </div>
+        <div class="form-group">
+          <label for="user-address">শিপিং ঠিকানা</label>
+          <textarea id="user-address" rows="2" required placeholder="ঢাকা, বাংলাদেশ"></textarea>
+        </div>
+        <button type="submit" class="confirm-order-btn">
+          <i class="fa-solid fa-truck-fast"></i> অর্ডার সাবমিট করুন
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-message">অর্ডার সফলভাবে সম্পন্ন হয়েছে!</span>
+  </div>
+
+  <!-- JavaScript Module -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

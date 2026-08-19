@@ -1,0 +1,19 @@
+{
+  "name": "nexus-3d-laptop-shop",
+  "version": "1.0.0",
+  "description": "Interactive 3D Laptop Customizer & E-Commerce Shop built with Three.js",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [
+    "threejs",
+    "3d-customizer",
+    "laptop-shop",
+    "webgl",
+    "bangla-demo"
+  ],
+  "author": "Antigravity AI",
+  "license": "MIT"
+}

@@ -256,9 +256,9 @@ function renderWallpaper(type) {
     screenCtx.fillStyle = '#ffffff';
     screenCtx.font = '300 56px "Outfit", sans-serif';
     screenCtx.fillText('10:42 AM', w / 2 - 110, h / 2 - 20);
-    screenCtx.font = '400 20px "Hind Siliguri", sans-serif';
+    screenCtx.font = '400 20px "Outfit", sans-serif';
     screenCtx.fillStyle = '#9ca3af';
-    screenCtx.fillText('মঙ্গলবার, ১৮ আগস্ট ২০২৬', w / 2 - 100, h / 2 + 25);
+    screenCtx.fillText('Tuesday, August 18, 2026', w / 2 - 115, h / 2 + 25);
   }
 
   if (screenTexture) screenTexture.needsUpdate = true;
@@ -572,14 +572,14 @@ function setupUIEvents() {
   checkoutForm.addEventListener('submit', (e) => {
     e.preventDefault();
     modal.classList.remove('open');
-    showToast('🎉 ধন্যবাদ! আপনার Nexus Pro 16 3D অর্ডারটি সফলভাবে গৃহীত হয়েছে!');
+    showToast('🎉 Thank you! Your Nexus Pro 16 3D order has been received!');
   });
 
   addCartBtn.addEventListener('click', () => {
     const badge = document.getElementById('cart-count');
     let count = parseInt(badge.innerText) + 1;
     badge.innerText = count;
-    showToast('🛒 পণ্যটি আপনার শপিং কার্টে যোগ করা হয়েছে!');
+    showToast('🛒 Item added to your shopping cart!');
   });
 }
 

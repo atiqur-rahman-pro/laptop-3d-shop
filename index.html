@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Importmap for Three.js -->
@@ -33,7 +33,7 @@
   <!-- Loading Screen -->
   <div id="loading-screen" class="loading-screen">
     <div class="spinner"></div>
-    <p>3D Studio লোড হচ্ছে...</p>
+    <p>Loading 3D Studio...</p>
   </div>
 
   <!-- Navigation Header -->
@@ -57,9 +57,9 @@
 
   <!-- Drag / Zoom Hint Overlay -->
   <div class="interaction-hint">
-    <div class="hint-item"><i class="fa-solid fa-hand-pointer"></i> মাউস ড্রাগ করে ৩৬০° ঘোরান</div>
+    <div class="hint-item"><i class="fa-solid fa-hand-pointer"></i> Drag mouse to rotate 360°</div>
     <div class="hint-divider">|</div>
-    <div class="hint-item"><i class="fa-solid fa-magnifying-glass-plus"></i> স্ক্রোল করে জুম করুন</div>
+    <div class="hint-item"><i class="fa-solid fa-magnifying-glass-plus"></i> Scroll to Zoom</div>
   </div>
 
   <!-- Floating Customizer Panel -->
@@ -86,7 +86,7 @@
     <!-- Color Selection -->
     <div class="section">
       <h3 class="section-title">
-        <i class="fa-solid fa-palette"></i> বডি কালার সিলেক্ট করুন: 
+        <i class="fa-solid fa-palette"></i> Select Body Color: 
         <span id="selected-color-name" class="color-name-highlight">Space Black</span>
       </h3>
       <div class="color-options" id="color-options">
@@ -101,20 +101,20 @@
     <!-- Lid Control Slider -->
     <div class="section">
       <div class="slider-header">
-        <h3 class="section-title"><i class="fa-solid fa-laptop"></i> ডিসপ্লে লিড (Lid) নিয়ন্ত্রণ</h3>
+        <h3 class="section-title"><i class="fa-solid fa-laptop"></i> Display Lid Control</h3>
         <span id="lid-angle-text" class="slider-value">110° Open</span>
       </div>
       <input type="range" id="lid-slider" min="0" max="120" value="110" step="1" class="custom-range">
       <div class="preset-buttons">
-        <button class="preset-btn" id="btn-close-lid"><i class="fa-solid fa-folder-closed"></i> বন্ধ করুন</button>
-        <button class="preset-btn" id="btn-half-lid"><i class="fa-solid fa-folder"></i> হাফ ওপেন</button>
-        <button class="preset-btn active" id="btn-open-lid"><i class="fa-solid fa-folder-open"></i> ফুল ওপেন</button>
+        <button class="preset-btn" id="btn-close-lid"><i class="fa-solid fa-folder-closed"></i> Close Lid</button>
+        <button class="preset-btn" id="btn-half-lid"><i class="fa-solid fa-folder"></i> Half Open</button>
+        <button class="preset-btn active" id="btn-open-lid"><i class="fa-solid fa-folder-open"></i> Full Open</button>
       </div>
     </div>
 
     <!-- Camera Angles -->
     <div class="section">
-      <h3 class="section-title"><i class="fa-solid fa-camera-rotate"></i> ক্যামেরা ভিউ</h3>
+      <h3 class="section-title"><i class="fa-solid fa-camera-rotate"></i> Camera View</h3>
       <div class="camera-grid">
         <button class="cam-btn" data-cam="front"><i class="fa-solid fa-laptop"></i> Front</button>
         <button class="cam-btn" data-cam="keyboard"><i class="fa-solid fa-keyboard"></i> Keyboard</button>
@@ -125,14 +125,14 @@
         <label class="switch-label">
           <input type="checkbox" id="auto-spin-toggle">
           <span class="slider round"></span>
-          <span><i class="fa-solid fa-rotate"></i> অটো ৩৬০° স্পিন (Auto Rotate)</span>
+          <span><i class="fa-solid fa-rotate"></i> Auto 360° Spin</span>
         </label>
       </div>
     </div>
 
     <!-- Screen Wallpaper -->
     <div class="section">
-      <h3 class="section-title"><i class="fa-solid fa-desktop"></i> স্ক্রিন ওয়ালপেপার পরিবর্তন</h3>
+      <h3 class="section-title"><i class="fa-solid fa-desktop"></i> Screen Wallpaper</h3>
       <div class="wallpaper-options">
         <button class="wp-btn active" data-wp="matrix"><i class="fa-solid fa-code"></i> Cyber Code</button>
         <button class="wp-btn" data-wp="nebula"><i class="fa-solid fa-meteor"></i> Cosmic</button>
@@ -146,7 +146,7 @@
         <i class="fa-solid fa-bag-shopping"></i> Buy Now
       </button>
       <button class="add-cart-btn" id="add-cart-btn">
-        <i class="fa-solid fa-cart-plus"></i> কার্টে যোগ করুন
+        <i class="fa-solid fa-cart-plus"></i> Add to Cart
       </button>
     </div>
   </aside>
@@ -157,48 +157,48 @@
       <button class="close-modal-btn" id="close-modal">&times;</button>
       <div class="modal-header">
         <i class="fa-solid fa-circle-check success-icon"></i>
-        <h2>অর্ডার নিশ্চিতকরণ (Checkout)</h2>
-        <p>আপনার কাস্টমাইজড 3D ল্যাপটপের বিবরণ সম্বলিত সামারি</p>
+        <h2>Order Confirmation</h2>
+        <p>Summary of your customized 3D laptop build</p>
       </div>
 
       <div class="order-summary">
         <div class="summary-item">
-          <span>প্রোডাক্ট মডেল:</span>
+          <span>Product Model:</span>
           <strong>Nexus Pro 16 Ultra</strong>
         </div>
         <div class="summary-item">
-          <span>নির্বাচিত কালার:</span>
+          <span>Selected Color:</span>
           <strong id="modal-color-name">Space Black</strong>
         </div>
         <div class="summary-item">
-          <span>ডিসপ্লে লিড স্টেট:</span>
+          <span>Display Lid State:</span>
           <strong id="modal-lid-state">110° Open</strong>
         </div>
         <div class="summary-item">
-          <span>প্রসেসর ও র‍্যাম:</span>
+          <span>Processor & Memory:</span>
           <strong>Nexus M3 Max • 36GB RAM • 1TB SSD</strong>
         </div>
         <div class="summary-item total-row">
-          <span>মোট মূল্য:</span>
+          <span>Total Price:</span>
           <strong class="total-price">$2,499 USD</strong>
         </div>
       </div>
 
       <form id="checkout-form" class="checkout-form">
         <div class="form-group">
-          <label for="user-name">আপনার নাম</label>
-          <input type="text" id="user-name" required placeholder="মোঃ আব্দুর রহমান">
+          <label for="user-name">Your Full Name</label>
+          <input type="text" id="user-name" required placeholder="John Doe">
         </div>
         <div class="form-group">
-          <label for="user-phone">ফোন নম্বর</label>
-          <input type="tel" id="user-phone" required placeholder="01700000000">
+          <label for="user-phone">Phone Number</label>
+          <input type="tel" id="user-phone" required placeholder="+1 555-0199">
         </div>
         <div class="form-group">
-          <label for="user-address">শিপিং ঠিকানা</label>
-          <textarea id="user-address" rows="2" required placeholder="ঢাকা, বাংলাদেশ"></textarea>
+          <label for="user-address">Shipping Address</label>
+          <textarea id="user-address" rows="2" required placeholder="123 Innovation Way, Tech City"></textarea>
         </div>
         <button type="submit" class="confirm-order-btn">
-          <i class="fa-solid fa-truck-fast"></i> অর্ডার সাবমিট করুন
+          <i class="fa-solid fa-truck-fast"></i> Confirm Order
         </button>
       </form>
     </div>
@@ -207,7 +207,7 @@
   <!-- Toast Notification -->
   <div class="toast-notification" id="toast">
     <i class="fa-solid fa-circle-check"></i>
-    <span id="toast-message">অর্ডার সফলভাবে সম্পন্ন হয়েছে!</span>
+    <span id="toast-message">Order placed successfully!</span>
   </div>
 
   <!-- JavaScript Module -->
